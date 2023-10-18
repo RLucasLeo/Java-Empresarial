@@ -1,7 +1,7 @@
 package test;
 
+import com.consiti.sga.domain.Persona;
 import javax.persistence.*;
-import mx.com.gm.sga.domain.Persona;
 import org.apache.logging.log4j.*;
 
 public class ClienteEntidadPersona {
@@ -12,16 +12,16 @@ public class ClienteEntidadPersona {
         EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
         
-        //Inicia la transaccion
+        //Inicia trasaccion
         tx.begin();
-        //No se debe especificar el ID de la base de datos
-        Persona persona1 = new Persona("Maria","Gutierrez","mgutierrez@mail.com","88991199");
-        log.debug("Objeto a persistir:" + persona1);
-        //Persistimos el objeto
-        em.persist(persona1);
-        //terminamos la transaccion
+        //No se especifica el id 
+        Persona personal = new Persona("Maria", "Silvia", "msilvia@mail.com", "33221100");
+        log.debug("Objeto a persistir: "+personal);
+        //Persistir el obj en la DB
+        em.persist(personal);
+        //termina transaccion
         tx.commit();
-        log.debug("Objeto persistido" + persona1);
+        log.debug("Objeto persistido: " + personal);
         em.close();
     }
 }

@@ -2,9 +2,11 @@ package com.consiti.sga.servicio;
 
 import com.consiti.domain.Persona;
 import java.util.List;
+import javax.annotation.security.PermitAll;
 import javax.ejb.Local;
 
 @Local
+@PermitAll
 public interface PersonaService {
     
     public List<Persona> listarPersonas();

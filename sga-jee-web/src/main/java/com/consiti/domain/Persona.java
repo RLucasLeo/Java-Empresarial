@@ -1,19 +1,33 @@
 package com.consiti.domain;
 
 import java.io.Serializable;
+import javax.persistence.*;
 
-
-public class Persona implements Serializable {
-    private static final long serialVersionUID = 1;
-    private int idPersona;
-    private String nombre;
-    private String apellido;
-    private String email;
-    private int telefono;
+@Entity
+@NamedQueries({
+    @NamedQuery(name="Persona.findAll", query="SELECT p FROM Persona p ORDER BY p.idPersona")
+})
+@Table(name="persona")
+public class Persona implements Serializable{
+    private static final long serialVersionUID = 1L;
     
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name="id_persona")
+    private int idPersona;
+    
+    private String nombre;
+    
+    private String apellido;
+    
+    private String email;
+    
+    private String telefono;
 
-    public Persona(int idPersona, String nombre, String apellido, String email, int telefono) {
-        this.idPersona = idPersona;
+    public Persona() {
+    }
+
+    public Persona(String nombre, String apellido, String email, String telefono) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
@@ -52,11 +66,11 @@ public class Persona implements Serializable {
         this.email = email;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
@@ -64,4 +78,6 @@ public class Persona implements Serializable {
     public String toString() {
         return "Persona{" + "idPersona=" + idPersona + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email + ", telefono=" + telefono + '}';
     }
+    
+    
 }
